@@ -6,10 +6,10 @@ import {
   useFonts,
   Poppins_400Regular,
   Poppins_500Medium,
-  Poppins_700Bold
-} from '@expo-google-fonts/poppins'
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
 
-import theme from './src/global/styles/theme'
+import theme from './src/global/styles/theme';
 
 import Dashboard from './src/screens/Dashboard';
 
@@ -17,11 +17,11 @@ const gofinances: React.FC = () => {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_500Medium,
-    Poppins_700Bold
+    Poppins_700Bold,
   });
 
-  if(!fontsLoaded) {
-    return <AppLoading />
+  if (!fontsLoaded) {
+    return <AppLoading />;
   }
 
   return (
@@ -29,6 +29,6 @@ const gofinances: React.FC = () => {
       <Dashboard />
     </ThemeProvider>
   );
-}
+};
 
 export default gofinances;
