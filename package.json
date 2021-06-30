@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/vector-icons": "^12.0.5",
     "@expo-google-fonts/poppins": "^0.1.0",
     "expo": "~41.0.1",
     "expo-app-loading": "^1.0.3",

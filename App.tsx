@@ -11,7 +11,7 @@ import {
 
 import theme from './src/global/styles/theme';
 
-import Dashboard from './src/screens/Dashboard';
+import Register from './src/screens/Register';
 
 const gofinances: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -26,7 +26,7 @@ const gofinances: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Dashboard />
+      <Register />
     </ThemeProvider>
   );
 };
