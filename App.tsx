@@ -1,6 +1,9 @@
 import React from 'react';
+import 'react-native-gesture-handler';
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
+
+import { NavigationContainer } from '@react-navigation/native';
 
 import {
   useFonts,
@@ -11,7 +14,7 @@ import {
 
 import theme from './src/global/styles/theme';
 
-import Register from './src/screens/Register';
+import AppRoutes from './src/routes/app.routes';
 
 const gofinances: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -26,7 +29,9 @@ const gofinances: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Register />
+      <NavigationContainer>
+        <AppRoutes />
+      </NavigationContainer>
     </ThemeProvider>
   );
 };
