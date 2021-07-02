@@ -4,6 +4,7 @@ import { useTheme } from 'styled-components';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Platform } from 'react-native';
+import { RFValue } from 'react-native-responsive-fontsize';
 import Dashboard from '../screens/Dashboard';
 import Register from '../screens/Register';
 
@@ -20,7 +21,7 @@ const routes: React.FC = () => {
         labelPosition: 'beside-icon',
         style: {
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: 88,
+          height: RFValue(88),
         },
       }}
     >
