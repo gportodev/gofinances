@@ -27,7 +27,7 @@ const InputForm: React.FC<Props> = ({
           <Input onChangeText={onChange} value={value} {...rest} />
         )}
       />
-      <Error>{error && <Error> {error} </Error>}</Error>
+      {error && <Error> {error} </Error>}
     </Container>
   );
 };

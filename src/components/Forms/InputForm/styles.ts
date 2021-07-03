@@ -10,5 +10,5 @@ export const Error = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
   color: ${({ theme }) => theme.colors.attention};
 
-  margin: 7px;
+  margin: ${RFValue(7)}px;
 `;

@@ -1,7 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
 `;
@@ -31,12 +31,14 @@ export const Form = styled.View`
   padding: 24px;
 `;
 
-export const Fields = styled.View``;
+export const Fields = styled.View`
+  margin-bottom: ${RFValue(16)}px;
+`;
 
 export const TransactionTypes = styled.View`
   flex-direction: row;
   justify-content: space-between;
 
-  margin-top: 8px;
-  margin-bottom: 16px;
+  margin-top: ${RFValue(8)}px;
+  margin-bottom: ${RFValue(16)}px;
 `;

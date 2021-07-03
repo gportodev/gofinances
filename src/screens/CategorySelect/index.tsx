@@ -30,8 +30,8 @@ const CategorySelect: React.FC<Props> = ({
   setCategory,
   closeSelectCategory,
 }: Props) => {
-  const handleCategorySelect = (category: Category) => {
-    setCategory(category);
+  const handleCategorySelect = (categ: Category) => {
+    setCategory(categ);
   };
 
   return (
