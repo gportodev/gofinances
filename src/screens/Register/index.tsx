@@ -99,9 +99,9 @@ const Register: React.FC = () => {
         key: 'category',
         name: 'Categoria',
       });
-      navigation.navigate('Listagem');
+      return navigation.navigate('Listagem');
     } catch (error) {
-      Alert.alert('Erro', 'Erro ao salvar');
+      return Alert.alert('Erro', 'Erro ao salvar');
     }
   };
 
