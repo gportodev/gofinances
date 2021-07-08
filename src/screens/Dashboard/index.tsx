@@ -116,10 +116,12 @@ const Dashboard: React.FC = () => {
       transactions,
       'positive',
     );
+
     const lastTransactionExpensives = getLastTransactionDate(
       transactions,
       'negative',
     );
+
     const totalInterval = `01 a ${lastTransactionExpensives}`;
 
     const total = entriesTotal - expensiveTotal;
