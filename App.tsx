@@ -21,6 +21,8 @@ import theme from './src/global/styles/theme';
 import AppRoutes from './src/routes/app.routes';
 import SignIn from './src/screens/SignIn';
 
+import { AuthProvider } from './src/hooks/auth';
+
 const gofinances: React.FC = () => {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
@@ -36,7 +38,9 @@ const gofinances: React.FC = () => {
     <ThemeProvider theme={theme}>
       <NavigationContainer>
         <StatusBar barStyle="light-content" />
-        <SignIn />
+        <AuthProvider>
+          <SignIn />
+        </AuthProvider>
       </NavigationContainer>
     </ThemeProvider>
   );
