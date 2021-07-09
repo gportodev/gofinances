@@ -160,7 +160,7 @@ const Dashboard: React.FC = () => {
   useFocusEffect(
     useCallback(() => {
       loadTransactions();
-    }, []),
+    }, [transactions]),
   );
 
   return (

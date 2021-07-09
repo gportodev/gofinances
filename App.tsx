@@ -2,6 +2,7 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
+import { StatusBar } from 'react-native';
 
 import AppLoading from 'expo-app-loading';
 import { ThemeProvider } from 'styled-components';
@@ -18,6 +19,7 @@ import {
 import theme from './src/global/styles/theme';
 
 import AppRoutes from './src/routes/app.routes';
+import SignIn from './src/screens/SignIn';
 
 const gofinances: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -33,7 +35,8 @@ const gofinances: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <AppRoutes />
+        <StatusBar barStyle="light-content" />
+        <SignIn />
       </NavigationContainer>
     </ThemeProvider>
   );
