@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator } from 'react-native';
 
@@ -27,6 +27,7 @@ import {
   LogoutButton,
   LoadContainer,
 } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -51,29 +52,42 @@ const Dashboard: React.FC = () => {
   );
 
   const theme = useTheme();
+  const { signOut, user } = useAuth();
 
-  const getLastTransactionDate = (
+  function getLastTransactionDate(
     collection: DataListProps[],
     type: 'positive' | 'negative',
-  ) => {
-    const lastTransaction = new Date(
-      Math.max(
-        ...collection
-          .filter(transaction => transaction.type === type)
-          .map(transaction => new Date(transaction.date).getTime()),
+  ) {
+    const collectionFilttered = collection.filter(
+      transaction => transaction.type === type,
+    );
+
+    if (collectionFilttered.length === 0) {
+      return 0;
+    }
+
+    const lastTransaction = Math.max(
+      ...collectionFilttered.map(transaction =>
+        new Date(transaction.date).getTime(),
       ),
     );
 
-    return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString(
-      'pt-BR',
-      {
-        month: 'long',
-      },
-    )}`;
-  };
+    const dt = new Date(lastTransaction).toLocaleString();
 
-  const loadTransactions = async () => {
-    const dataKey = '@gofinances:transactions';
+    const day = dt.charAt(3) + dt.charAt(4);
+
+    const month = dt.charAt(0) + dt.charAt(1);
+    const year = dt.charAt(6) + dt.charAt(7) + dt.charAt(8) + dt.charAt(9);
+
+    const date = new Date(`${month}/${day}/${year}`);
+
+    return `${day} de ${date.toLocaleString('pt-BR', {
+      month: 'long',
+    })}`;
+  }
+
+  async function loadTransactions() {
+    const dataKey = `@gofinances:transactions_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const transactionsList = response ? JSON.parse(response) : [];
 
@@ -122,7 +136,10 @@ const Dashboard: React.FC = () => {
       'negative',
     );
 
-    const totalInterval = `01 a ${lastTransactionExpensives}`;
+    const totalInterval =
+      lastTransactionExpensives === 0
+        ? 'Não há movimentações'
+        : `01 a ${lastTransactionExpensives}`;
 
     const total = entriesTotal - expensiveTotal;
 
@@ -132,14 +149,20 @@ const Dashboard: React.FC = () => {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionEntries}`,
+        lastTransaction:
+          lastTransactionEntries === 0
+            ? 'Não há transações'
+            : `Última entrada dia ${lastTransactionEntries}`,
       },
       expensives: {
         amount: expensiveTotal.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: `Última saída dia ${lastTransactionExpensives}`,
+        lastTransaction:
+          lastTransactionExpensives === 0
+            ? 'Não há transações'
+            : `Última saída dia ${lastTransactionExpensives}`,
       },
       total: {
         amount: total.toLocaleString('pt-BR', {
@@ -151,16 +174,12 @@ const Dashboard: React.FC = () => {
     });
 
     setIsLoading(false);
-  };
-
-  useEffect(() => {
-    loadTransactions();
-  }, []);
+  }
 
   useFocusEffect(
     useCallback(() => {
       loadTransactions();
-    }, [transactions]),
+    }, [transactions.length]),
   );
 
   return (
@@ -176,17 +195,17 @@ const Dashboard: React.FC = () => {
               <UserInfo>
                 <Photo
                   source={{
-                    uri: 'https://avatars.githubusercontent.com/u/34238796?v=4',
+                    uri: user.photo,
                   }}
                 />
 
                 <User>
                   <Text>Olá,</Text>
-                  <Text>Gabriel</Text>
+                  <Text>{user.name}</Text>
                 </User>
               </UserInfo>
 
-              <LogoutButton>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
