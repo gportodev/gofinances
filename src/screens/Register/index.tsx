@@ -137,13 +137,13 @@ const Register: React.FC = () => {
             <TransactionTypes>
               <TransactionTypeButton
                 type="up"
-                title="Income"
+                title="Entrada"
                 onPress={() => handleTransactionsTypeSelect('positive')}
                 isActive={transactionType === 'positive'}
               />
               <TransactionTypeButton
                 type="down"
-                title="Outcome"
+                title="Saída"
                 onPress={() => handleTransactionsTypeSelect('negative')}
                 isActive={transactionType === 'negative'}
               />
