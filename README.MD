@@ -33,7 +33,9 @@
 
 ### Listagem
 
-![](assets/main.png)
+![](assets/mainIncomeCard.png)
+![](assets/mainOutcomeCard.png)
+![](assets/mainTotalCard.png)
 
 ### Cadastrar
 
