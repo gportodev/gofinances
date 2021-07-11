@@ -33,11 +33,11 @@
 
 ### Listagem
 
-<!-- ![](assets/mainIncomeCard.png) -->
+![](assets/mainIncomeCard.png)
 
-<!-- ![](assets/mainOutcomeCard.png) -->
+![](assets/mainOutcomeCard.png)
 
-<!-- ![](assets/mainTotalCard.png) -->
+![](assets/mainTotalCard.png)
 
 ### Cadastrar
 
