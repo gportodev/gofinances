@@ -23,6 +23,7 @@ import {
   Fields,
   TransactionTypes,
 } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 interface FormData {
   name: string;
@@ -41,7 +42,9 @@ const Register: React.FC = () => {
   const [transactionType, setTransactionType] = useState('');
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
-  const dataKey = '@gofinances:transactions';
+  const { user } = useAuth();
+
+  const dataKey = `@gofinances:transactions_user:${user.id}`;
 
   const [category, setCategory] = useState({
     key: 'category',
@@ -99,9 +102,9 @@ const Register: React.FC = () => {
         key: 'category',
         name: 'Categoria',
       });
-      navigation.navigate('Listagem');
+      return navigation.navigate('Listagem');
     } catch (error) {
-      Alert.alert('Erro', 'Erro ao salvar');
+      return Alert.alert('Erro', 'Erro ao salvar');
     }
   };
 
@@ -134,13 +137,13 @@ const Register: React.FC = () => {
             <TransactionTypes>
               <TransactionTypeButton
                 type="up"
-                title="Income"
+                title="Entrada"
                 onPress={() => handleTransactionsTypeSelect('positive')}
                 isActive={transactionType === 'positive'}
               />
               <TransactionTypeButton
                 type="down"
-                title="Outcome"
+                title="Saída"
                 onPress={() => handleTransactionsTypeSelect('negative')}
                 isActive={transactionType === 'negative'}
               />
