@@ -52,3 +52,7 @@
 ![](assets/resume.png)
 ![](assets/resumeCategory.png)
 
+## Test it now!
+
+- APK Path: gofinances/apk
+
