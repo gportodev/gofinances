@@ -34,21 +34,16 @@
 ### Listagem
 
 ![](assets/mainIncomeCard.png)
-
 ![](assets/mainOutcomeCard.png)
-
 ![](assets/mainTotalCard.png)
 
 ### Cadastrar
 
 ![](assets/register.png)
-
 ![](assets/categoryList.png)
 
 ![](assets/category.png)
-
 ![](assets/registerOutcomeEx.png)
-
 ![](assets/registerIncomeEx.png)
 
 ### Resume
