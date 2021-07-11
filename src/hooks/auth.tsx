@@ -42,8 +42,12 @@ function AuthProvider({ children }: AuthProviderProps) {
       const result = await Google.logInAsync({
         iosClientId:
           '365290602530-33ln37ag31mdm5ghij9fopkq74ml8rb5.apps.googleusercontent.com',
+        iosStandaloneAppClientId:
+          '365290602530-9kluhphldgus20u4jcj8jk5d8sf03hom.apps.googleusercontent.com',
         androidClientId:
           '365290602530-roe23v0gcq64e9p0naj70e2tanmer7bg.apps.googleusercontent.com',
+        androidStandaloneAppClientId:
+          '365290602530-00jdf0obuamust8mlp6bab2hi8nhqn1j.apps.googleusercontent.com',
         scopes: ['profile', 'email'],
       });
 
