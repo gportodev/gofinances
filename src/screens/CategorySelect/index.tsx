@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Alert } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import Button from '../../components/Forms/Button';
 import categories from '../../utils/categories';
 
 import {
@@ -12,6 +12,8 @@ import {
   Name,
   Separator,
   Footer,
+  Button,
+  ButtonTitle,
 } from './styles';
 
 interface Category {
@@ -30,8 +32,31 @@ const CategorySelect: React.FC<Props> = ({
   setCategory,
   closeSelectCategory,
 }: Props) => {
+  const [selected, setSelected] = useState<boolean>(false);
+
   const handleCategorySelect = (categ: Category) => {
     setCategory(categ);
+  };
+
+  const confirmCategorySelect = () => {
+    if (category.key !== 'category') {
+      setSelected(!selected);
+      closeSelectCategory();
+    } else {
+      Alert.alert('Erro', 'É preciso selecionar a categoria.');
+    }
+  };
+
+  const goBack = () => {
+    if (!selected) {
+      const categ = {
+        key: 'category',
+        name: 'Categoria',
+      };
+
+      setCategory(categ);
+      closeSelectCategory();
+    }
   };
 
   return (
@@ -57,7 +82,12 @@ const CategorySelect: React.FC<Props> = ({
       />
 
       <Footer>
-        <Button title="Selecionar" onPress={closeSelectCategory} />
+        <Button isActive onPress={confirmCategorySelect}>
+          <ButtonTitle>Confirmar</ButtonTitle>
+        </Button>
+        <Button isActive={false} onPress={goBack}>
+          <ButtonTitle>Voltar</ButtonTitle>
+        </Button>
       </Footer>
     </Container>
   );

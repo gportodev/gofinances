@@ -1,6 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
+import { RectButton } from 'react-native-gesture-handler';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -60,4 +61,24 @@ export const Separator = styled.View`
 export const Footer = styled.View`
   width: 100%;
   padding: 24px;
+
+  flex-direction: row;
+`;
+
+export const Button = styled(RectButton)<CategoryProps>`
+  width: 50%;
+  background-color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.success : theme.colors.secondary};
+
+  padding: 18px;
+  margin: 2px;
+  border-radius: 5px;
+  align-items: center;
+`;
+
+export const ButtonTitle = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.medium};
+  font-size: ${RFValue(14)}px;
+
+  color: ${({ theme }) => theme.colors.shape};
 `;
