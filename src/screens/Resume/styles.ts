@@ -58,3 +58,23 @@ export const LoadContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+export const Warning = styled.View`
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-top: ${RFValue(100)}px;
+`;
+
+export const WarningIcon = styled(Feather)`
+  font-size: ${RFValue(150)}px;
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const WarningText = styled.Text`
+  font-family: ${({ theme }) => theme.fonts.regular};
+  font-size: ${RFValue(20)}px;
+  color: ${({ theme }) => theme.colors.text_dark};
+`;
