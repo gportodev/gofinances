@@ -1,6 +1,5 @@
-/* eslint-disable import/no-duplicates */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { addMonths, subMonths, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
@@ -11,7 +10,6 @@ import { useTheme } from 'styled-components';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { ActivityIndicator } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import { useCallback } from 'react';
 import HistoryCard from '../../components/HistoryCard';
 import categories from '../../utils/categories';
 
@@ -26,6 +24,9 @@ import {
   MonthSelectIcon,
   Month,
   LoadContainer,
+  Warning,
+  WarningText,
+  WarningIcon,
 } from './styles';
 import { useAuth } from '../../hooks/auth';
 
@@ -48,7 +49,6 @@ interface CategoryData {
 
 const Resume: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
     [],
@@ -157,22 +157,29 @@ const Resume: React.FC = () => {
             </MonthSelectButton>
           </MonthSelect>
 
-          <ChartContainer>
-            <VictoryPie
-              data={totalByCategories}
-              colorScale={totalByCategories.map(category => category.color)}
-              style={{
-                labels: {
-                  fontSize: RFValue(18),
-                  fontWeight: 'bold',
-                  fill: theme.colors.shape,
-                },
-              }}
-              labelRadius={50}
-              x="percent"
-              y="total"
-            />
-          </ChartContainer>
+          {totalByCategories.length > 0 ? (
+            <ChartContainer>
+              <VictoryPie
+                data={totalByCategories}
+                colorScale={totalByCategories.map(category => category.color)}
+                style={{
+                  labels: {
+                    fontSize: RFValue(18),
+                    fontWeight: 'bold',
+                    fill: theme.colors.shape,
+                  },
+                }}
+                labelRadius={50}
+                x="percent"
+                y="total"
+              />
+            </ChartContainer>
+          ) : (
+            <Warning>
+              <WarningIcon name="frown" />
+              <WarningText>Sem dados cadastrados</WarningText>
+            </Warning>
+          )}
 
           {totalByCategories.map(item => (
             <HistoryCard
