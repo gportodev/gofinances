@@ -5,6 +5,7 @@ import { ActivityIndicator } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
+import { useEffect } from 'react';
 import HighlightCard from '../../components/HighlightCard';
 
 import TransactionCard, {
@@ -66,24 +67,20 @@ const Dashboard: React.FC = () => {
       return 0;
     }
 
-    const lastTransaction = Math.max(
-      ...collectionFilttered.map(transaction =>
-        new Date(transaction.date).getTime(),
+    const lastTransaction = new Date(
+      Math.max(
+        ...collectionFilttered.map(transaction =>
+          new Date(transaction.date).getTime(),
+        ),
       ),
     );
 
-    const dt = new Date(lastTransaction).toLocaleString();
-
-    const day = dt.charAt(3) + dt.charAt(4);
-
-    const month = dt.charAt(0) + dt.charAt(1);
-    const year = dt.charAt(6) + dt.charAt(7) + dt.charAt(8) + dt.charAt(9);
-
-    const date = new Date(`${month}/${day}/${year}`);
-
-    return `${day} de ${date.toLocaleString('pt-BR', {
-      month: 'long',
-    })}`;
+    return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString(
+      'pt-BR',
+      {
+        month: 'long',
+      },
+    )}`;
   }
 
   async function loadTransactions() {
@@ -127,12 +124,12 @@ const Dashboard: React.FC = () => {
     setTransactions(transactionsFormatted);
 
     const lastTransactionEntries = getLastTransactionDate(
-      transactions,
+      transactionsList,
       'positive',
     );
 
     const lastTransactionExpensives = getLastTransactionDate(
-      transactions,
+      transactionsList,
       'negative',
     );
 
@@ -179,7 +176,7 @@ const Dashboard: React.FC = () => {
   useFocusEffect(
     useCallback(() => {
       loadTransactions();
-    }, [transactions.length]),
+    }, []),
   );
 
   return (
