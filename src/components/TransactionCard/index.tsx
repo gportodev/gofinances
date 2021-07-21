@@ -39,7 +39,7 @@ const TransactionCard: React.FC<Props> = ({ data }: Props) => {
       <Footer>
         <Category>
           <Icon name={category.icon} />
-          <CategoryName>{category.name}</CategoryName>
+          <CategoryName> {category.name}</CategoryName>
         </Category>
         <Date>{data.date}</Date>
       </Footer>
