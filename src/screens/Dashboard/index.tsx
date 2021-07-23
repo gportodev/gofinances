@@ -5,7 +5,6 @@ import { ActivityIndicator } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
-import { useEffect } from 'react';
 import HighlightCard from '../../components/HighlightCard';
 
 import TransactionCard, {
