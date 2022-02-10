@@ -1,56 +1,53 @@
-# gofinances
 
-## Requirements
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/34238796/153417657-f62c9645-7ecc-4c4a-9b59-3eaf65690812.png" />
+</p>
 
-- Package manager: Yarn/Npm;
-- Expo CLI(https://docs.expo.io/workflow/expo-cli/);
-- Expo Client(https://expo.io/tools#client);
-- React Native(https://reactnative.dev/docs/getting-started);
+<h1 align="center">Gofinances</h1>
 
-## Steps
 
-- Use yarn/npm to install dependencies;
-- Start the app with: 'expo start' or 'yarn start';
-- Compatible plataforms :
-  - Emulator:
-    - Android Studio(https://developer.android.com/studio).
-  - Smartphone:
-    - Expo Client(install from the store, open it and scan the 'QR Code').
+<h3 align="center">Manage your finances today.</h3>
 
-## Features
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/gamonpo/gofinances"/>
+  <img src="https://img.shields.io/github/repo-size/gamonpo/gofinances"/>
+</p>
 
-- Register entries/expenses;
-- List all registered itens(entries/expenses);
-- Show total of entries itens;
-- Show total of expenses itens;
-- Show result of (entries - expenses)
-- Show a statistical graphic of your expenses;
-## Screenshots
+<div align="center">
+  <a href="#how-to-use">How To Use</a>
+  |
+  <a href="#additional-notes">Additional notes</a>
+</div>
 
-### Login
+<br>
 
-![](assets/login.png)
+<div align="center">
+  
+![gofinances_part1](https://user-images.githubusercontent.com/34238796/153416997-d3b8c515-6cfd-44b1-a641-565235a3a1c5.gif)
+![gofinances_part2](https://user-images.githubusercontent.com/34238796/153417014-e7a42186-14ff-41cd-ab49-daa34f0a1103.gif)
+ 
+</div>
 
-### Listagem
+## How To Use
 
-![](assets/mainIncomeCard.png)
 
-![](assets/mainOutcomeCard.png)
-![](assets/mainTotalCard.png)
+```bash
+# Clone 
+$ git clone https://github.com/gamonpo/gofinances.git
 
-### Cadastrar
+# Go into
+$ cd gofinances
 
-![](assets/register.png)
-![](assets/categoryList.png)
+# Install dependencies
+$ yarn install
 
-![](assets/category.png)
-![](assets/registerOutcomeEx.png)
-![](assets/registerIncomeEx.png)
+# Run app
+$ expo start
+```
 
-### Resume
+## Additional notes
 
-![](assets/resume.png)
-![](assets/resumeCategory.png)
+In order to run you need to download the [Expo client](https://expo.dev/client).
 
 
 
