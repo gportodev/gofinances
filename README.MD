@@ -8,11 +8,6 @@
 
 <h3 align="center">Manage your finances today.</h3>
 
-<p align="center">
-  <img src="https://img.shields.io/github/last-commit/gamonpo/gofinances"/>
-  <img src="https://img.shields.io/github/repo-size/gamonpo/gofinances"/>
-</p>
-
 <div align="center">
   <a href="#how-to-use">How To Use</a>
   |
