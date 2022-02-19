@@ -44,8 +44,6 @@ const Register: React.FC = () => {
 
   const { user } = useAuth();
 
-  const dataKey = `@gofinances:transactions_user:${user.id}`;
-
   const [category, setCategory] = useState({
     key: 'category',
     name: 'Categoria',
@@ -67,6 +65,9 @@ const Register: React.FC = () => {
   };
 
   const handleOpenSelectCategoryModal = () => {
+    // setTimeout(() => {
+    //   setCategoryModalOpen(true);
+    // }, 1000);
     setCategoryModalOpen(true);
   };
 
@@ -89,6 +90,7 @@ const Register: React.FC = () => {
     };
 
     try {
+      const dataKey = `@gofinances:transactions_user:${user.id}`;
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
 
@@ -150,6 +152,7 @@ const Register: React.FC = () => {
             </TransactionTypes>
 
             <CategorySelectButton
+              testID="button-category"
               title={category.name}
               onPress={handleOpenSelectCategoryModal}
             />
@@ -158,7 +161,7 @@ const Register: React.FC = () => {
           <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
         </Form>
 
-        <Modal visible={categoryModalOpen}>
+        <Modal testID="modal-category" visible={categoryModalOpen}>
           <CategorySelect
             category={category}
             setCategory={setCategory}
