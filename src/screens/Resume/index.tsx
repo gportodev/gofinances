@@ -6,29 +6,21 @@ import { ptBR } from 'date-fns/locale';
 
 import { VictoryPie } from 'victory-native';
 
-import { useTheme } from 'styled-components';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, View, Text, ScrollView } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import HistoryCard from '../../components/HistoryCard';
+import { BorderlessButton } from 'react-native-gesture-handler';
+import { HistoryCard } from '../../components/HistoryCard';
 import categories from '../../utils/categories';
 
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  ChartContainer,
-  MonthSelect,
-  MonthSelectButton,
-  MonthSelectIcon,
-  Month,
-  LoadContainer,
-  Warning,
-  WarningText,
-  WarningIcon,
-} from './styles';
+import styles from './styles';
 import { useAuth } from '../../hooks/auth';
+import colors from '../../constants/colors';
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  SadIcon,
+} from '../../assets/icons/Loader';
 
 interface TransactionData {
   type: 'positive' | 'negative';
@@ -47,16 +39,15 @@ interface CategoryData {
   percent: string;
 }
 
-const Resume: React.FC = () => {
+function Resume(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>(
     [],
   );
-  const theme = useTheme();
   const tabHeight = useBottomTabBarHeight();
 
-  const { user } = useAuth();
+  const { user: userData } = useAuth();
 
   const handleDateChange = (action: 'next' | 'prev') => {
     if (action === 'next') {
@@ -69,7 +60,7 @@ const Resume: React.FC = () => {
   async function loadData() {
     setIsLoading(true);
 
-    const dataKey = `@gofinances:transactions_user:${user.id}`;
+    const dataKey = `@gofinances:transactions_user:${userData?.user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const responseFormatted = response ? JSON.parse(response) : [];
 
@@ -124,41 +115,41 @@ const Resume: React.FC = () => {
   useFocusEffect(
     useCallback(() => {
       loadData();
-    }, [selectedDate]),
+    }, []),
   );
 
   return (
-    <Container>
-      <Header>
-        <Title>Resumo por categoria</Title>
-      </Header>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Resumo por categoria</Text>
+      </View>
       {isLoading ? (
-        <LoadContainer>
-          <ActivityIndicator color={theme.colors.primary} size="large" />
-        </LoadContainer>
+        <View style={styles.loadContainer}>
+          <ActivityIndicator color={colors.primary} size="large" />
+        </View>
       ) : (
-        <Content
+        <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             paddingHorizontal: 24,
             paddingBottom: tabHeight,
           }}
         >
-          <MonthSelect>
-            <MonthSelectButton onPress={() => handleDateChange('prev')}>
-              <MonthSelectIcon name="chevron-left" />
-            </MonthSelectButton>
-            <Month>
+          <View style={styles.monthSelect}>
+            <BorderlessButton onPress={() => handleDateChange('prev')}>
+              <ArrowLeftIcon />
+            </BorderlessButton>
+            <Text style={styles.month}>
               {format(selectedDate, 'MMMM, yyyy', { locale: ptBR })}{' '}
-            </Month>
+            </Text>
 
-            <MonthSelectButton onPress={() => handleDateChange('next')}>
-              <MonthSelectIcon name="chevron-right" />
-            </MonthSelectButton>
-          </MonthSelect>
+            <BorderlessButton onPress={() => handleDateChange('next')}>
+              <ArrowRightIcon />
+            </BorderlessButton>
+          </View>
 
           {totalByCategories.length > 0 ? (
-            <ChartContainer>
+            <View style={styles.chartContainer}>
               <VictoryPie
                 data={totalByCategories}
                 colorScale={totalByCategories.map(category => category.color)}
@@ -166,19 +157,19 @@ const Resume: React.FC = () => {
                   labels: {
                     fontSize: RFValue(18),
                     fontWeight: 'bold',
-                    fill: theme.colors.shape,
+                    fill: colors.shape,
                   },
                 }}
                 labelRadius={50}
                 x="percent"
                 y="total"
               />
-            </ChartContainer>
+            </View>
           ) : (
-            <Warning>
-              <WarningIcon name="frown" />
-              <WarningText>Sem dados cadastrados</WarningText>
-            </Warning>
+            <View style={styles.warning}>
+              <SadIcon width={150} height={150} />
+              <Text style={styles.warningText}>Sem dados cadastrados</Text>
+            </View>
           )}
 
           {totalByCategories.map(item => (
@@ -189,10 +180,10 @@ const Resume: React.FC = () => {
               color={item.color}
             />
           ))}
-        </Content>
+        </ScrollView>
       )}
-    </Container>
+    </View>
   );
-};
+}
 
-export default Resume;
+export { Resume };

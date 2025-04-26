@@ -1,80 +1,61 @@
-import { Feather } from '@expo/vector-icons';
-import { BorderlessButton } from 'react-native-gesture-handler';
-import { RFValue } from 'react-native-responsive-fontsize';
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
+import colors from '../../constants/colors';
+import { Fonts } from '../../constants/fonts';
 
-export const Container = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.background};
-`;
-
-export const Header = styled.View`
-  background-color: ${({ theme }) => theme.colors.primary};
-
-  width: 100%;
-  height: ${RFValue(113)}px;
-
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 19px;
-`;
-
-export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
-  color: ${({ theme }) => theme.colors.shape};
-`;
-
-export const Content = styled.ScrollView``;
-
-export const ChartContainer = styled.View`
-  width: 100%;
-  align-items: center;
-`;
-
-export const MonthSelect = styled.View`
-  width: 100%;
-
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-top: 24px;
-`;
-
-export const MonthSelectButton = styled(BorderlessButton)``;
-
-export const MonthSelectIcon = styled(Feather)`
-  font-size: ${RFValue(24)}px;
-`;
-
-export const Month = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(20)}px;
-`;
-
-export const LoadContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const Warning = styled.View`
-  width: 100%;
-
-  justify-content: center;
-  align-items: center;
-
-  margin-top: ${RFValue(100)}px;
-`;
-
-export const WarningIcon = styled(Feather)`
-  font-size: ${RFValue(150)}px;
-  color: ${({ theme }) => theme.colors.primary};
-`;
-
-export const WarningText = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(20)}px;
-  color: ${({ theme }) => theme.colors.text_dark};
-`;
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  header: {
+    backgroundColor: colors.primary,
+    width: '100%',
+    height: 113,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 19,
+  },
+  title: {
+    fontFamily: Fonts.regular,
+    fontSize: 18,
+    color: colors.shape,
+  },
+  content: {
+    flex: 1,
+  },
+  chartContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  monthSelect: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 24,
+  },
+  month: {
+    fontFamily: Fonts.regular,
+    fontSize: 20,
+  },
+  loadContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  warning: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 100,
+  },
+  warningIcon: {
+    fontSize: 150,
+    color: colors.primary,
+  },
+  warningText: {
+    fontFamily: Fonts.regular,
+    fontSize: 20,
+    color: colors.text_dark,
+  },
+});

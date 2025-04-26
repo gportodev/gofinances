@@ -1,31 +1,25 @@
 import React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useTheme } from 'styled-components';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Platform } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import Dashboard from '../screens/Dashboard';
 import Register from '../screens/Register';
-import Resume from '../screens/Resume';
+import { Resume } from '../screens/Resume';
+import colors from '../constants/colors';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
-interface ParamsProps {
-  size: number;
-  color: string;
-}
-
-const AppRoutes: React.FC = () => {
-  const theme = useTheme();
-
+function AppRoutes(): JSX.Element {
   return (
     <Navigator
-      tabBarOptions={{
-        activeTintColor: theme.colors.secondary,
-        inactiveTintColor: theme.colors.text,
-        labelPosition: 'beside-icon',
-        style: {
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: colors.secondary,
+        tabBarInactiveTintColor: colors.text,
+        tabBarLabelPosition: 'beside-icon',
+        tabBarStyle: {
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
           height: RFValue(88),
         },
@@ -35,7 +29,7 @@ const AppRoutes: React.FC = () => {
         name="Listagem"
         component={Dashboard}
         options={{
-          tabBarIcon: ({ size, color }: ParamsProps) => (
+          tabBarIcon: ({ size, color }) => (
             <MaterialIcons
               name="format-list-bulleted"
               size={size}
@@ -49,7 +43,7 @@ const AppRoutes: React.FC = () => {
         name="Cadastrar"
         component={Register}
         options={{
-          tabBarIcon: ({ size, color }: ParamsProps) => (
+          tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="attach-money" size={size} color={color} />
           ),
         }}
@@ -58,13 +52,13 @@ const AppRoutes: React.FC = () => {
         name="Resume"
         component={Resume}
         options={{
-          tabBarIcon: ({ size, color }: ParamsProps) => (
+          tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="pie-chart" size={size} color={color} />
           ),
         }}
       />
     </Navigator>
   );
-};
+}
 
-export default AppRoutes;
+export { AppRoutes };
