@@ -21,7 +21,7 @@ export default function App(): JSX.Element {
 
   return (
     <GestureHandlerRootView>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" />
       <AuthProvider>
         <Routes />
       </AuthProvider>

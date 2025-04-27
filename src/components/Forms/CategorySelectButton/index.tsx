@@ -1,7 +1,8 @@
 import React from 'react';
-import { RectButtonProps } from 'react-native-gesture-handler';
-
-import { Container, Category, Icon } from './styles';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { Text } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import styles from './styles';
 
 interface Props extends RectButtonProps {
   title: string;
@@ -14,10 +15,10 @@ const CategorySelectButton: React.FC<Props> = ({
   testID,
 }: Props) => {
   return (
-    <Container onPress={onPress} testID={testID}>
-      <Category>{title}</Category>
-      <Icon name="chevron-down" />
-    </Container>
+    <RectButton style={styles.container} onPress={onPress} testID={testID}>
+      <Text style={styles.category}>{title}</Text>
+      <Feather name="chevron-down" size={20} />
+    </RectButton>
   );
 };
 

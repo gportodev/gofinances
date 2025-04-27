@@ -1,44 +1,38 @@
-import { RFValue } from 'react-native-responsive-fontsize';
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
+import colors from '../../constants/colors';
+import { Fonts } from '../../constants/fonts';
 
-export const Container = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.background};
-`;
-
-export const Header = styled.View`
-  background-color: ${({ theme }) => theme.colors.primary};
-
-  width: 100%;
-  height: ${RFValue(113)}px;
-
-  align-items: center;
-  justify-content: center;
-  padding-bottom: 19px;
-`;
-
-export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;
-  color: ${({ theme }) => theme.colors.shape};
-`;
-
-export const Form = styled.View`
-  flex: 1;
-  width: 100%;
-  justify-content: space-between;
-
-  padding: 24px;
-`;
-
-export const Fields = styled.View`
-  margin-bottom: ${RFValue(16)}px;
-`;
-
-export const TransactionTypes = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-
-  margin-top: ${RFValue(8)}px;
-  margin-bottom: ${RFValue(16)}px;
-`;
+export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  header: {
+    backgroundColor: colors.primary,
+    width: '100%',
+    height: 113,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 19,
+  },
+  title: {
+    fontFamily: Fonts.regular,
+    fontSize: 18,
+    color: colors.shape,
+  },
+  form: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'space-between',
+    padding: 24,
+  },
+  fields: {
+    marginBottom: 16,
+  },
+  transactionTypes: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 8,
+    marginBottom: 16,
+  },
+});

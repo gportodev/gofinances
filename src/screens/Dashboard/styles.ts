@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
   header: {
     width: '100%',
-    height: 300, // aprox. RFPercentage(42)
+    height: 300,
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -19,7 +19,7 @@ export default StyleSheet.create({
   userWrapper: {
     width: '100%',
     paddingHorizontal: 24,
-    // marginTop: getStatusBarHeight() + 28,
+    paddingVertical: 30,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -48,7 +48,7 @@ export default StyleSheet.create({
   highlightCards: {
     width: '100%',
     position: 'absolute',
-    marginTop: 140, // aprox. RFPercentage(20)
+    marginTop: 140,
   },
   highlightCardsContent: {
     paddingHorizontal: 24,
@@ -56,7 +56,7 @@ export default StyleSheet.create({
   transactions: {
     flex: 1,
     paddingHorizontal: 24,
-    marginTop: 80, // aprox. RFPercentage(12)
+    marginTop: 80,
   },
   title: {
     fontSize: 18,

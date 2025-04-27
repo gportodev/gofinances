@@ -10,6 +10,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     marginBottom: 16,
+    gap: 10,
   },
   imageContainer: {
     height: '100%',
