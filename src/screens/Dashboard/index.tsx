@@ -211,33 +211,31 @@ const Dashboard: React.FC = () => {
               type="up"
               title="Entradas"
               amount={highlightData.entries.amount}
-              lastTransatcion={highlightData.entries.lastTransaction}
+              lastTransaction={highlightData.entries.lastTransaction}
             />
 
             <HighlightCard
               type="down"
               title="Saídas"
               amount={highlightData.expensives.amount}
-              lastTransatcion={highlightData.expensives.lastTransaction}
+              lastTransaction={highlightData.expensives.lastTransaction}
             />
 
             <HighlightCard
               type="total"
               title="Total"
               amount={highlightData.total.amount}
-              lastTransatcion={highlightData.total.lastTransaction}
+              lastTransaction={highlightData.total.lastTransaction}
             />
           </ScrollView>
 
           <View style={styles.transactions}>
-            <Text style={styles.title}>Listagem</Text>
-
             <FlatList
               data={transactions}
               keyExtractor={item => item.id}
+              ListHeaderComponent={<Text style={styles.title}>Listagem</Text>}
               renderItem={({ item }) => <TransactionCard data={item} />}
               showsVerticalScrollIndicator={false}
-              contentContainerStyle={styles.transactionListContent}
             />
           </View>
         </>

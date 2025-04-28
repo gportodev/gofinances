@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StatusBar, StyleSheet } from 'react-native';
 import { Fonts } from '../../constants/fonts';
 import colors from '../../constants/colors';
 
@@ -7,8 +7,8 @@ export default StyleSheet.create({
     flex: 1,
   },
   header: {
+    paddingTop: (StatusBar?.currentHeight || 10) * 2,
     width: '100%',
-    height: '70%',
     backgroundColor: colors.primary,
     justifyContent: 'flex-end',
     alignItems: 'center',

@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import colors from '../../../constants/colors';
 
-type FeatherIconName = keyof typeof Feather.glyphMap;
+export type FeatherIconName = keyof typeof Feather.glyphMap;
 
 const icons: Record<'up' | 'down', FeatherIconName> = {
   up: 'arrow-up-circle',

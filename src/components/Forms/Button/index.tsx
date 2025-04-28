@@ -1,7 +1,8 @@
 import React from 'react';
-import { RectButtonProps } from 'react-native-gesture-handler';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { Text } from 'react-native';
 
-import { Container, Title } from './styles';
+import styles from './styles';
 
 interface Props extends RectButtonProps {
   title: string;
@@ -10,9 +11,9 @@ interface Props extends RectButtonProps {
 
 const Button: React.FC<Props> = ({ title, onPress, ...rest }: Props) => {
   return (
-    <Container onPress={onPress} {...rest}>
-      <Title>{title}</Title>
-    </Container>
+    <RectButton style={styles.container} onPress={onPress} {...rest}>
+      <Text style={styles.title}>{title}</Text>
+    </RectButton>
   );
 };
 

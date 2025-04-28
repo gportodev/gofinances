@@ -155,7 +155,7 @@ const Register: React.FC = () => {
             />
           </View>
 
-          {/* <Button title="Enviar" onPress={handleSubmit(handleRegister)} /> */}
+          <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
         </View>
 
         <Modal testID="modal-category" visible={categoryModalOpen}>

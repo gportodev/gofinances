@@ -9,14 +9,14 @@ interface Props {
   type: 'up' | 'down' | 'total';
   title: string;
   amount: string;
-  lastTransatcion: string;
+  lastTransaction: string;
 }
 
 function HighlightCard({
   type,
   title,
   amount,
-  lastTransatcion,
+  lastTransaction,
 }: Props): JSX.Element {
   const renderIcon = (type: Icon) => {
     const Icon = getIconFromType(type);
@@ -51,7 +51,7 @@ function HighlightCard({
       <View>
         <Text style={styles.amount}>{amount}</Text>
 
-        <Text style={styles.lastTransaction}>{lastTransatcion}</Text>
+        <Text style={styles.lastTransaction}>{lastTransaction}</Text>
       </View>
     </View>
   );

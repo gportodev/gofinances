@@ -3,11 +3,11 @@ import { Fonts } from '../../constants/fonts';
 
 export default StyleSheet.create({
   container: {
-    width: 300,
+    width: 250,
     borderRadius: 5,
     paddingHorizontal: 23,
     paddingTop: 19,
-    paddingBottom: 42,
+    paddingBottom: 12,
     marginRight: 16,
   },
   header: {
@@ -18,18 +18,13 @@ export default StyleSheet.create({
     fontFamily: Fonts.regular,
     fontSize: 14,
   },
-  icon: {
-    fontSize: 40,
-  },
   amount: {
     fontFamily: Fonts.medium,
-    fontSize: 32,
-    // color: type === 'total' ? colors.shape : colors.text_dark,
-    marginTop: 32,
+    fontSize: 18,
+    marginTop: 22,
   },
   lastTransaction: {
     fontFamily: Fonts.regular,
     fontSize: 12,
-    // color: type === 'total' ? colors.shape : colors.text,
   },
 });

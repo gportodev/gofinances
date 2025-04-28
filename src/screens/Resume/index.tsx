@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState, useCallback } from 'react';
-import { RFValue } from 'react-native-responsive-fontsize';
 import { addMonths, subMonths, format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -155,7 +154,7 @@ function Resume(): JSX.Element {
                 colorScale={totalByCategories.map(category => category.color)}
                 style={{
                   labels: {
-                    fontSize: RFValue(18),
+                    fontSize: 18,
                     fontWeight: 'bold',
                     fill: colors.shape,
                   },

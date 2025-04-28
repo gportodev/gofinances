@@ -3,13 +3,18 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Platform } from 'react-native';
-import { RFValue } from 'react-native-responsive-fontsize';
 import Dashboard from '../screens/Dashboard';
 import Register from '../screens/Register';
 import { Resume } from '../screens/Resume';
 import colors from '../constants/colors';
+import { Fonts } from '../constants/fonts';
 
 const { Navigator, Screen } = createBottomTabNavigator();
+
+const labelStyle = {
+  fontSize: 10,
+  fontFamily: Fonts.regular,
+};
 
 function AppRoutes(): JSX.Element {
   return (
@@ -18,10 +23,9 @@ function AppRoutes(): JSX.Element {
         headerShown: false,
         tabBarActiveTintColor: colors.secondary,
         tabBarInactiveTintColor: colors.text,
-        tabBarLabelPosition: 'beside-icon',
         tabBarStyle: {
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: RFValue(88),
+          height: 64,
         },
       }}
     >
@@ -36,6 +40,7 @@ function AppRoutes(): JSX.Element {
               color={color}
             />
           ),
+          tabBarLabelStyle: labelStyle,
         }}
       />
 
@@ -46,6 +51,7 @@ function AppRoutes(): JSX.Element {
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="attach-money" size={size} color={color} />
           ),
+          tabBarLabelStyle: labelStyle,
         }}
       />
       <Screen
@@ -55,6 +61,7 @@ function AppRoutes(): JSX.Element {
           tabBarIcon: ({ size, color }) => (
             <MaterialIcons name="pie-chart" size={size} color={color} />
           ),
+          tabBarLabelStyle: labelStyle,
         }}
       />
     </Navigator>

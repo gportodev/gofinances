@@ -1,20 +1,11 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { Alert, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, RectButton } from 'react-native-gesture-handler';
+import { Feather } from '@expo/vector-icons';
 import categories from '../../utils/categories';
 
-import {
-  Container,
-  Header,
-  Title,
-  Category,
-  Icon,
-  Name,
-  Separator,
-  Footer,
-  Button,
-  ButtonTitle,
-} from './styles';
+import styles from './styles';
+import colors from '../../constants/colors';
 
 interface Category {
   key: string;
@@ -60,36 +51,67 @@ const CategorySelect: React.FC<Props> = ({
   };
 
   return (
-    <Container>
-      <Header>
-        <Title>Categoria</Title>
-      </Header>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Categoria</Text>
+      </View>
 
       <FlatList
         data={categories}
         style={{ flex: 1, width: '100%' }}
         keyExtractor={item => item.key}
         renderItem={({ item }) => (
-          <Category
+          <TouchableOpacity
             onPress={() => handleCategorySelect(item)}
-            isActive={category.key === item.key}
+            style={[
+              styles.category,
+              {
+                backgroundColor:
+                  category.key === item.key
+                    ? colors.secondary_light
+                    : colors.background,
+              },
+            ]}
           >
-            <Icon name={item.icon} />
-            <Name>{item.name}</Name>
-          </Category>
+            <Feather
+              name={item.icon}
+              size={16}
+              style={{
+                margin: 16,
+              }}
+            />
+
+            <Text style={styles.name}>{item.name}</Text>
+          </TouchableOpacity>
         )}
-        ItemSeparatorComponent={() => <Separator />}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
 
-      <Footer>
-        <Button isActive onPress={confirmCategorySelect}>
-          <ButtonTitle>Confirmar</ButtonTitle>
-        </Button>
-        <Button isActive={false} onPress={goBack}>
-          <ButtonTitle>Voltar</ButtonTitle>
-        </Button>
-      </Footer>
-    </Container>
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: colors.success,
+            },
+          ]}
+          onPress={() => confirmCategorySelect()}
+        >
+          <Text style={styles.buttonTitle}>Confirmar</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              backgroundColor: colors.secondary,
+            },
+          ]}
+          onPress={goBack}
+        >
+          <Text style={styles.buttonTitle}>Voltar</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 

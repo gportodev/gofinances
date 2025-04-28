@@ -10,7 +10,7 @@ export default StyleSheet.create({
   },
   header: {
     width: '100%',
-    height: 300,
+    height: 200,
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'flex-start',
@@ -48,7 +48,7 @@ export default StyleSheet.create({
   highlightCards: {
     width: '100%',
     position: 'absolute',
-    marginTop: 140,
+    marginTop: 100,
   },
   highlightCardsContent: {
     paddingHorizontal: 24,
@@ -56,15 +56,12 @@ export default StyleSheet.create({
   transactions: {
     flex: 1,
     paddingHorizontal: 24,
-    marginTop: 80,
+    marginTop: 60,
   },
   title: {
     fontSize: 18,
     fontFamily: Fonts.regular,
     marginBottom: 16,
-  },
-  transactionListContent: {
-    // paddingBottom: getBottomSpace(),
   },
   loadContainer: {
     flex: 1,
