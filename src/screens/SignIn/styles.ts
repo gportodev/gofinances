@@ -33,7 +33,7 @@ export default StyleSheet.create({
   },
   footer: {
     width: '100%',
-    height: '30%',
+    flex: 1,
     backgroundColor: colors.secondary,
   },
   footerWrapper: {

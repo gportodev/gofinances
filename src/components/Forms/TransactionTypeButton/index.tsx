@@ -1,6 +1,10 @@
 import React from 'react';
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
-import { View, Text } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import colors from '../../../constants/colors';
@@ -12,7 +16,7 @@ const icons: Record<'up' | 'down', FeatherIconName> = {
   down: 'arrow-down-circle',
 };
 
-interface Props extends RectButtonProps {
+interface Props extends TouchableOpacityProps {
   title: string;
   type: 'up' | 'down';
   isActive: boolean;
@@ -41,7 +45,7 @@ const TransactionTypeButton: React.FC<Props> = ({
         },
       ]}
     >
-      <RectButton style={styles.button} {...rest}>
+      <TouchableOpacity style={styles.button} {...rest}>
         <Feather
           name={icons[type]}
           type={type}
@@ -53,7 +57,7 @@ const TransactionTypeButton: React.FC<Props> = ({
           ]}
         />
         <Text style={styles.title}>{title}</Text>
-      </RectButton>
+      </TouchableOpacity>
     </View>
   );
 };

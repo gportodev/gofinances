@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Alert, Text, TouchableOpacity, View } from 'react-native';
-import { FlatList, RectButton } from 'react-native-gesture-handler';
+import { Alert, FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import categories from '../../utils/categories';
 

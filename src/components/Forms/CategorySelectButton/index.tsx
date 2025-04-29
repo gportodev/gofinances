@@ -1,11 +1,10 @@
 import React from 'react';
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import colors from '../../../constants/colors';
 
-interface Props extends RectButtonProps {
+interface Props extends TouchableOpacityProps {
   title: string;
   onPress: () => void;
 }
@@ -16,10 +15,14 @@ const CategorySelectButton: React.FC<Props> = ({
   testID,
 }: Props) => {
   return (
-    <RectButton style={styles.container} onPress={onPress} testID={testID}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={onPress}
+      testID={testID}
+    >
       <Text style={styles.category}>{title}</Text>
       <Feather name="chevron-down" size={20} color={colors.text} />
-    </RectButton>
+    </TouchableOpacity>
   );
 };
 
