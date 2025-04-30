@@ -1,49 +1,60 @@
 import React from 'react';
 
-import {
-  Container,
-  Header,
-  Title,
-  Icon,
-  Footer,
-  Amount,
-  LastTransaction,
-} from './styles';
+import { View, Text } from 'react-native';
+import styles from './styles';
+import colors from '../../constants/colors';
+import { getIconColor, getIconFromType, Icon } from './helpers';
 
 interface Props {
   type: 'up' | 'down' | 'total';
   title: string;
   amount: string;
-  lastTransatcion: string;
+  lastTransaction: string;
 }
 
-const icon = {
-  up: 'arrow-up-circle',
-  down: 'arrow-down-circle',
-  total: 'dollar-sign',
-};
-
-const HighlightCard: React.FC<Props> = ({
+function HighlightCard({
   type,
   title,
   amount,
-  lastTransatcion,
-}: Props) => {
+  lastTransaction,
+}: Props): JSX.Element {
+  const renderIcon = (type: Icon) => {
+    const Icon = getIconFromType(type);
+
+    return <Icon color={getIconColor(type)} />;
+  };
+
   return (
-    <Container type={type}>
-      <Header>
-        <Title type={type}>{title}</Title>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: type === 'total' ? colors.secondary : colors.shape,
+        },
+      ]}
+    >
+      <View style={styles.header}>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: type === 'total' ? colors.shape : colors.text_dark,
+            },
+          ]}
+        >
+          {title}
+        </Text>
 
-        <Icon name={icon[type]} type={type} />
-      </Header>
+        {renderIcon(type)}
+      </View>
 
-      <Footer>
-        <Amount type={type}>{amount}</Amount>
+      <View>
+        <Text style={styles.amount}>{amount}</Text>
 
-        <LastTransaction type={type}>{lastTransatcion}</LastTransaction>
-      </Footer>
-    </Container>
+        <Text style={styles.lastTransaction}>{lastTransaction}</Text>
+      </View>
+    </View>
   );
-};
+}
 
-export default HighlightCard;
+export { HighlightCard };

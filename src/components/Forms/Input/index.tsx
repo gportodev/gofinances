@@ -1,7 +1,8 @@
 import React from 'react';
-import { TextInputProps } from 'react-native';
+import { TextInput, TextInputProps } from 'react-native';
 
-import Container from './styles';
+import styles from './styles';
+import colors from '../../../constants/colors';
 
 // type Props = TextInputProps;
 interface Props extends TextInputProps {
@@ -9,7 +10,18 @@ interface Props extends TextInputProps {
 }
 
 const Input: React.FC<Props> = ({ active = false, ...rest }: Props) => {
-  return <Container active={active} {...rest} />;
+  return (
+    <TextInput
+      style={[
+        styles.input,
+        active && {
+          borderWidth: 3,
+          borderColor: colors.attention,
+        },
+      ]}
+      {...rest}
+    />
+  );
 };
 
 export default Input;

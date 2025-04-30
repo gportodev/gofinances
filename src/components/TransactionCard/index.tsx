@@ -1,16 +1,10 @@
 import React from 'react';
+import { Text, View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 import categories from '../../utils/categories';
 
-import {
-  Container,
-  Title,
-  Amount,
-  Footer,
-  Category,
-  Icon,
-  CategoryName,
-  Date,
-} from './styles';
+import styles from './styles';
+import colors from '../../constants/colors';
 
 export interface TransactionCardProps {
   type: 'positive' | 'negative';
@@ -26,24 +20,32 @@ interface Props {
 
 const TransactionCard: React.FC<Props> = ({ data }: Props) => {
   const [category] = categories.filter(item => item.key === data.category);
+  const { type } = data;
 
   return (
-    <Container>
-      <Title>{data.name}</Title>
+    <View style={styles.container}>
+      <Text style={styles.title}>{data.name}</Text>
 
-      <Amount type={data.type}>
+      <Text
+        style={[
+          styles.amount,
+          {
+            color: type === 'positive' ? colors.success : colors.attention,
+          },
+        ]}
+      >
         {data.type === 'negative' && '- '}
         {data.amount}
-      </Amount>
+      </Text>
 
-      <Footer>
-        <Category>
-          <Icon name={category.icon} />
-          <CategoryName> {category.name}</CategoryName>
-        </Category>
-        <Date>{data.date}</Date>
-      </Footer>
-    </Container>
+      <View style={styles.footer}>
+        <View style={styles.category}>
+          <Feather style={styles.icon} name={category.icon} />
+          <Text> {category.name}</Text>
+        </View>
+        <Text style={styles.categoryName}>{data.date}</Text>
+      </View>
+    </View>
   );
 };
 

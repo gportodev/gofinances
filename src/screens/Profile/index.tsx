@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, TextInput, View, Button } from 'react-native';
 
-export function Profile() {
+export function Profile(): JSX.Element {
   return (
     <View>
       <Text testID="text-title">Perfil</Text>

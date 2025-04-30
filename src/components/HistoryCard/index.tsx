@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Container, Title, Amount } from './styles';
+import { Text, View } from 'react-native';
+import styles from './styles';
 
 interface Props {
   title: string;
@@ -8,13 +9,20 @@ interface Props {
   color: string;
 }
 
-const HistoryCard: React.FC<Props> = ({ title, amount, color }: Props) => {
+function HistoryCard({ title, amount, color }: Props): JSX.Element {
   return (
-    <Container color={color}>
-      <Title>{title}</Title>
-      <Amount>{amount}</Amount>
-    </Container>
+    <View
+      style={[
+        styles.container,
+        {
+          borderLeftColor: color,
+        },
+      ]}
+    >
+      <Text>{title}</Text>
+      <Text>{amount}</Text>
+    </View>
   );
-};
+}
 
-export default HistoryCard;
+export { HistoryCard };

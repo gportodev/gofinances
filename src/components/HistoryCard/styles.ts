@@ -1,32 +1,25 @@
-import { RFValue } from 'react-native-responsive-fontsize';
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
+import colors from '../../constants/colors';
+import { Fonts } from '../../constants/fonts';
 
-interface ContainerProps {
-  color: string;
-}
-
-export const Container = styled.View<ContainerProps>`
-  width: 100%;
-
-  background-color: ${({ theme }) => theme.colors.shape};
-
-  flex-direction: row;
-  justify-content: space-between;
-
-  padding: 13px 24px;
-
-  border-radius: 5px;
-  border-left-width: 5px;
-  border-left-color: ${({ color }) => color};
-
-  margin-bottom: 8px;
-`;
-
-export const Title = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(15)}px;
-`;
-export const Amount = styled.Text`
-  font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(15)}px;
-`;
+export default StyleSheet.create({
+  container: {
+    width: '100%',
+    backgroundColor: colors.shape,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 13,
+    paddingHorizontal: 24,
+    borderRadius: 5,
+    borderLeftWidth: 5,
+    marginBottom: 8,
+  },
+  title: {
+    fontFamily: Fonts.regular,
+    fontSize: 15,
+  },
+  amount: {
+    fontFamily: Fonts.regular,
+    fontSize: 15,
+  },
+});

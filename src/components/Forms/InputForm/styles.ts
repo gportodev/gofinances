@@ -1,14 +1,15 @@
-import { RFValue } from 'react-native-responsive-fontsize';
-import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
+import { Fonts } from '../../../constants/fonts';
+import colors from '../../../constants/colors';
 
-export const Container = styled.View`
-  width: 100%;
-`;
-
-export const Error = styled.Text`
-  font-size: ${RFValue(14)}px;
-  font-family: ${({ theme }) => theme.fonts.regular};
-  color: ${({ theme }) => theme.colors.attention};
-
-  margin: ${RFValue(7)}px;
-`;
+export default StyleSheet.create({
+  container: {
+    width: '100%',
+  },
+  text: {
+    fontSize: 14,
+    fontFamily: Fonts.regular,
+    color: colors.attention,
+    margin: 7,
+  },
+});

@@ -1,0 +1,10 @@
+export { default as AppleIcon } from './svg/apple.svg';
+export { default as GoogleIcon } from './svg/google.svg';
+export { default as LogoIcon } from './svg/logo.svg';
+export { default as ArrowLeftIcon } from './svg/chevron-left.svg';
+export { default as ArrowRightIcon } from './svg/chevron-right.svg';
+export { default as SadIcon } from './svg/frown.svg';
+export { default as PowerIcon } from './svg/power.svg';
+export { default as ArrowUpCircleIcon } from './svg/arrow-up-circle.svg';
+export { default as ArrowDownCircleIcon } from './svg/arrow-down-circle.svg';
+export { default as DollarIcon } from './svg/dollar-sign.svg';
