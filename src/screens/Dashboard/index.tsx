@@ -1,33 +1,27 @@
 import React, { useState, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityIndicator } from 'react-native';
+import {
+  ActivityIndicator,
+  View,
+  Image,
+  Text,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 
 import { useFocusEffect } from '@react-navigation/native';
-import { useTheme } from 'styled-components';
 
-import HighlightCard from '../../components/HighlightCard';
+import { BorderlessButton } from 'react-native-gesture-handler';
+import { HighlightCard } from '../../components/HighlightCard';
 
 import TransactionCard, {
   TransactionCardProps,
 } from '../../components/TransactionCard';
 
-import {
-  Container,
-  Header,
-  UserWrapper,
-  UserInfo,
-  Photo,
-  User,
-  Text,
-  Icon,
-  HighlightCards,
-  Transactions,
-  Title,
-  TransactionList,
-  LogoutButton,
-  LoadContainer,
-} from './styles';
+import styles from './styles';
 import { useAuth } from '../../hooks/auth';
+import colors from '../../constants/colors';
+import { PowerIcon } from '../../assets/icons/Loader';
 
 export interface DataListProps extends TransactionCardProps {
   id: string;
@@ -51,8 +45,7 @@ const Dashboard: React.FC = () => {
     {} as HighlightData,
   );
 
-  const theme = useTheme();
-  const { signOut, user } = useAuth();
+  const { signOut, user: data } = useAuth();
 
   function getLastTransactionDate(
     collection: DataListProps[],
@@ -83,7 +76,7 @@ const Dashboard: React.FC = () => {
   }
 
   async function loadTransactions() {
-    const dataKey = `@gofinances:transactions_user:${user.id}`;
+    const dataKey = `@gofinances:transactions_user:${data?.user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const transactionsList = response ? JSON.parse(response) : [];
 
@@ -179,69 +172,75 @@ const Dashboard: React.FC = () => {
   );
 
   return (
-    <Container>
+    <View style={styles.container}>
       {isLoading ? (
-        <LoadContainer>
-          <ActivityIndicator color={theme.colors.primary} size="large" />
-        </LoadContainer>
+        <View style={styles.loadContainer}>
+          <ActivityIndicator color={colors.primary} size="large" />
+        </View>
       ) : (
         <>
-          <Header>
-            <UserWrapper>
-              <UserInfo>
-                <Photo
+          <View style={styles.header}>
+            <View style={styles.userWrapper}>
+              <View style={styles.userInfo}>
+                <Image
+                  style={styles.photo}
                   source={{
-                    uri: user.photo,
+                    uri: data?.user.photo || '',
                   }}
                 />
 
-                <User>
-                  <Text>Olá,</Text>
-                  <Text>{user.name}</Text>
-                </User>
-              </UserInfo>
+                <View style={styles.user}>
+                  <Text style={styles.text}>Olá,</Text>
+                  <Text style={styles.text}>{data?.user.name}</Text>
+                </View>
+              </View>
 
-              <LogoutButton onPress={signOut}>
-                <Icon name="power" />
-              </LogoutButton>
-            </UserWrapper>
-          </Header>
+              <BorderlessButton onPress={signOut}>
+                <PowerIcon color={colors.secondary} />
+              </BorderlessButton>
+            </View>
+          </View>
 
-          <HighlightCards>
+          <ScrollView
+            style={styles.highlightCards}
+            contentContainerStyle={styles.highlightCardsContent}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          >
             <HighlightCard
               type="up"
               title="Entradas"
               amount={highlightData.entries.amount}
-              lastTransatcion={highlightData.entries.lastTransaction}
+              lastTransaction={highlightData.entries.lastTransaction}
             />
 
             <HighlightCard
               type="down"
               title="Saídas"
               amount={highlightData.expensives.amount}
-              lastTransatcion={highlightData.expensives.lastTransaction}
+              lastTransaction={highlightData.expensives.lastTransaction}
             />
 
             <HighlightCard
               type="total"
               title="Total"
               amount={highlightData.total.amount}
-              lastTransatcion={highlightData.total.lastTransaction}
+              lastTransaction={highlightData.total.lastTransaction}
             />
-          </HighlightCards>
+          </ScrollView>
 
-          <Transactions>
-            <Title>Listagem</Title>
-
-            <TransactionList
+          <View style={styles.transactions}>
+            <FlatList
               data={transactions}
               keyExtractor={item => item.id}
+              ListHeaderComponent={<Text style={styles.title}>Listagem</Text>}
               renderItem={({ item }) => <TransactionCard data={item} />}
+              showsVerticalScrollIndicator={false}
             />
-          </Transactions>
+          </View>
         </>
       )}
-    </Container>
+    </View>
   );
 };
 

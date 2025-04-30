@@ -1,94 +1,62 @@
 import React, { useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { Alert, ActivityIndicator, Platform } from 'react-native';
-import { useTheme } from 'styled-components';
-import AppleSvg from '../../assets/apple.svg';
-import GoogleSvg from '../../assets/google.svg';
-import LogoSvg from '../../assets/logo.svg';
+import { Alert, ActivityIndicator, View, Text } from 'react-native';
 
 import { useAuth } from '../../hooks/auth';
 
-import SignInSocialButton from '../../components/SignInSocialButton';
+import { SignInSocialButton } from '../../components/SignInSocialButton';
 
-import {
-  Container,
-  Header,
-  TitleWrapper,
-  Title,
-  SignInTitle,
-  Footer,
-  FooterWrapper,
-} from './styles';
+import styles from './styles';
 
-const SignIn: React.FC = () => {
+import { GoogleIcon, LogoIcon } from '../../assets/icons/Loader';
+import colors from '../../constants/colors';
+
+function SignIn(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
-  const { signInWithGoogle, signInWithApple } = useAuth();
-  const theme = useTheme();
+  const { signInWithGoogle } = useAuth();
 
   const handleSignInWithGoogle = async () => {
     try {
       setIsLoading(true);
-      return await signInWithGoogle();
+      await signInWithGoogle();
     } catch (error) {
       Alert.alert('Erro', 'Não foi possível conectar a conta Google');
       setIsLoading(false);
     }
   };
 
-  const handleSignInWithApple = async () => {
-    try {
-      setIsLoading(true);
-
-      return await signInWithApple();
-    } catch (error) {
-      Alert.alert('Erro', 'Não foi possível conectar a conta Apple');
-      setIsLoading(false);
-    }
-  };
-
   return (
-    <Container>
-      <Header>
-        <TitleWrapper>
-          <LogoSvg width={RFValue(120)} height={RFValue(68)} />
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.titleWrapper}>
+          <LogoIcon width={RFValue(120)} height={RFValue(68)} />
 
-          <Title>
+          <Text style={styles.title}>
             Controle suas {'\n'} finanças de forma {'\n'} muito simples
-          </Title>
-        </TitleWrapper>
+          </Text>
+        </View>
 
-        <SignInTitle>
+        <Text style={styles.signInTitle}>
           Faça seu login com {'\n'} uma das contas abaixo
-        </SignInTitle>
-      </Header>
+        </Text>
+      </View>
 
-      <Footer>
-        <FooterWrapper>
+      <View style={styles.footer}>
+        <View style={styles.footerWrapper}>
           <SignInSocialButton
             title="Entrar com Google"
-            svg={GoogleSvg}
+            svg={GoogleIcon}
             onPress={handleSignInWithGoogle}
           />
-
-          {Platform.OS === 'ios' && (
-            <SignInSocialButton
-              title="Entrar com Apple"
-              svg={AppleSvg}
-              onPress={handleSignInWithApple}
-            />
-          )}
-        </FooterWrapper>
+        </View>
 
         {isLoading && (
-          <ActivityIndicator
-            color={theme.colors.shape}
-            style={{ marginTop: 18 }}
-          />
+          <ActivityIndicator color={colors.shape} style={{ marginTop: 18 }} />
         )}
-      </Footer>
-    </Container>
+      </View>
+    </View>
   );
-};
+}
 
-export default SignIn;
+export { SignIn };

@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { Modal, TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
+import {
+  Modal,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+  View,
+  Text,
+} from 'react-native';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,14 +22,7 @@ import CategorySelectButton from '../../components/Forms/CategorySelectButton';
 
 import CategorySelect from '../CategorySelect';
 
-import {
-  Container,
-  Header,
-  Title,
-  Form,
-  Fields,
-  TransactionTypes,
-} from './styles';
+import styles from './styles';
 import { useAuth } from '../../hooks/auth';
 
 interface FormData {
@@ -43,8 +43,6 @@ const Register: React.FC = () => {
   const [categoryModalOpen, setCategoryModalOpen] = useState(false);
 
   const { user } = useAuth();
-
-  const dataKey = `@gofinances:transactions_user:${user.id}`;
 
   const [category, setCategory] = useState({
     key: 'category',
@@ -89,6 +87,7 @@ const Register: React.FC = () => {
     };
 
     try {
+      const dataKey = `@gofinances:transactions_user:${user?.user.id}`;
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
 
@@ -110,13 +109,13 @@ const Register: React.FC = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Container>
-        <Header>
-          <Title>Cadastro</Title>
-        </Header>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>Cadastro</Text>
+        </View>
 
-        <Form>
-          <Fields>
+        <View style={styles.form}>
+          <View style={styles.fields}>
             <InputForm
               name="name"
               control={control}
@@ -134,7 +133,7 @@ const Register: React.FC = () => {
               error={errors.amount && errors.amount.message}
             />
 
-            <TransactionTypes>
+            <View style={styles.transactionTypes}>
               <TransactionTypeButton
                 type="up"
                 title="Entrada"
@@ -147,25 +146,26 @@ const Register: React.FC = () => {
                 onPress={() => handleTransactionsTypeSelect('negative')}
                 isActive={transactionType === 'negative'}
               />
-            </TransactionTypes>
+            </View>
 
             <CategorySelectButton
+              testID="button-category"
               title={category.name}
               onPress={handleOpenSelectCategoryModal}
             />
-          </Fields>
+          </View>
 
           <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
-        </Form>
+        </View>
 
-        <Modal visible={categoryModalOpen}>
+        <Modal testID="modal-category" visible={categoryModalOpen}>
           <CategorySelect
             category={category}
             setCategory={setCategory}
             closeSelectCategory={handleCloseSelectCategoryModal}
           />
         </Modal>
-      </Container>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
