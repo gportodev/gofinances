@@ -2,16 +2,16 @@ module.exports = {
   expo: {
     name: "gofinance",
     slug: "gofinance",
-    version: "1.0.0",
+    version: "1.0.1",
     icon: "./assets/logo.png",
     assetBundlePatterns: ["**/*"],
     ios: {
       bundleIdentifier: "com.gofinance",
-      buildNumber: "1.0.0",
+      buildNumber: "1.0.1",
     },
     android: {
       package: "com.gofinance",
-      versionCode: 2,
+      versionCode: 3,
     },
     plugins: ['expo-font', '@react-native-google-signin/google-signin'],
     scheme: "gofinance",
