@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
-import { ActivityIndicator, StatusBar } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import useCachedResources from './src/hooks/useCachedResources';
@@ -21,7 +21,6 @@ export default function App(): JSX.Element {
 
   return (
     <GestureHandlerRootView>
-      <StatusBar barStyle="dark-content" />
       <AuthProvider>
         <Routes />
       </AuthProvider>

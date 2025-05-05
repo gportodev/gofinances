@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Alert, ActivityIndicator, View, Text } from 'react-native';
 
@@ -30,7 +29,7 @@ function SignIn(): JSX.Element {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.titleWrapper}>
-          <LogoIcon width={RFValue(120)} height={RFValue(68)} />
+          <LogoIcon width={120} height={68} />
 
           <Text style={styles.title}>
             Controle suas {'\n'} finanças de forma {'\n'} muito simples
