@@ -10,8 +10,6 @@ export default StyleSheet.create({
     paddingTop: (StatusBar?.currentHeight || 10) * 2,
     width: '100%',
     backgroundColor: colors.primary,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
   },
   titleWrapper: {
     alignItems: 'center',

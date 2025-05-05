@@ -3,7 +3,12 @@ module.exports = {
     name: "gofinance",
     slug: "gofinance",
     version: "1.0.2",
-    icon: "./assets/logo.png",
+    icon: "./assets/icon.png",
+    splash: {
+      image: './assets/splash.png',
+      resizeMode: 'contain',
+      backgroundColor: '#5636D3',
+    },
     assetBundlePatterns: ["**/*"],
     ios: {
       bundleIdentifier: "com.gofinance",
@@ -12,6 +17,10 @@ module.exports = {
     android: {
       package: "com.gofinance",
       versionCode: 5,
+      adaptiveIcon: {
+        foregroundImage: './assets/adaptive-icon.png',
+        backgroundColor: '#5636D3',
+      },
     },
     plugins: ['expo-font', '@react-native-google-signin/google-signin'],
     scheme: "gofinance",
