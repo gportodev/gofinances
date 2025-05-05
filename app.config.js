@@ -2,7 +2,7 @@ module.exports = {
   expo: {
     name: "gofinance",
     slug: "gofinance",
-    version: "1.0.2",
+    version: "1.0.3",
     icon: "./assets/icon.png",
     splash: {
       image: './assets/splash.png',
@@ -15,14 +15,14 @@ module.exports = {
     assetBundlePatterns: ["**/*"],
     ios: {
       bundleIdentifier: "com.gofinance",
-      buildNumber: "1.0.2",
+      buildNumber: "1.0.3",
       runtimeVersion: {
         policy: "appVersion"
       }
     },
     android: {
       package: "com.gofinance",
-      versionCode: 5,
+      versionCode: 6,
       adaptiveIcon: {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#5636D3',
