@@ -37,7 +37,7 @@ function SignIn(): JSX.Element {
         </View>
 
         <Text style={styles.signInTitle}>
-          Faça seu login com {'\n'} uma das contas abaixo
+          Faça login com {'\n'} uma das contas abaixo
         </Text>
       </View>
 
