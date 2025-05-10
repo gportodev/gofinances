@@ -14,6 +14,8 @@ const categories: Categories[] = [
   { key: 'car', name: 'Carro', icon: 'crosshair', color: '#E83F5B' },
   { key: 'leisure', name: 'Lazer', icon: 'heart', color: '#26195C' },
   { key: 'studies', name: 'Estudos', icon: 'book', color: '#9C001A' },
+  { key: 'energy', name: 'Energia', icon: 'zap', color: '#F2CE0E' },
+  { key: 'water', name: 'Água', icon: 'droplet', color: '#2079FF' },
 ];
 
 export default categories;
