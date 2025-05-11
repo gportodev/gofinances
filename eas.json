@@ -1,24 +1,42 @@
 {
   "cli": {
     "version": ">= 16.3.2",
-    "appVersionSource": "local"
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "channel": "development"
+      "channel": "development",
+        "android": {
+        "autoIncrement": false
+      }
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "preview",
+        "android": {
+        "autoIncrement": false
+      }
     },
     "production": {
-      "autoIncrement": false,
-      "channel": "production"
+      "credentialsSource": "remote",
+      "autoIncrement": true,
+      "channel": "production",
+      "android": {
+        "autoIncrement": "versionCode"
+      },
+      "env": {
+        "NODE_ENV": "production"
+      }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "track": "internal",
+        "releaseStatus": "draft"
+      }
+    }
   }
 }

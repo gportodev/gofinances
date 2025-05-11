@@ -2,7 +2,7 @@ module.exports = {
   expo: {
     name: "gofinance",
     slug: "gofinance",
-    version: "1.0.3",
+    version: "1.0.4",
     icon: "./assets/icon.png",
     splash: {
       image: './assets/splash.png',
@@ -15,7 +15,7 @@ module.exports = {
     assetBundlePatterns: ["**/*"],
     ios: {
       bundleIdentifier: "com.gofinance",
-      buildNumber: "1.0.3",
+      buildNumber: "1.0.4",
       runtimeVersion: {
         policy: "appVersion"
       }
@@ -27,7 +27,7 @@ module.exports = {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#5636D3',
       },
-      runtimeVersion: "1.0.0"
+      runtimeVersion: "appVersion"
     },
     plugins: ['expo-font', '@react-native-google-signin/google-signin'],
     scheme: "gofinance",
