@@ -27,7 +27,7 @@ module.exports = {
         foregroundImage: './assets/adaptive-icon.png',
         backgroundColor: '#5636D3',
       },
-      runtimeVersion: "appVersion"
+      runtimeVersion: "1.0.4"
     },
     plugins: ['expo-font', '@react-native-google-signin/google-signin'],
     scheme: "gofinance",
